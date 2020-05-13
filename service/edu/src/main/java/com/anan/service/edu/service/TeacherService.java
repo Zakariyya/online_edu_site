@@ -1,6 +1,6 @@
-package com.anan.edu.service;
+package com.anan.service.edu.service;
 
-import com.anan.edu.orm.Teacher;
+import com.anan.service.edu.orm.Teacher;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

@@ -1,6 +1,6 @@
-package com.anan.edu.mapper;
+package com.anan.service.edu.mapper;
 
-import com.anan.edu.orm.Teacher;
+import com.anan.service.edu.orm.Teacher;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

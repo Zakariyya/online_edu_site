@@ -1,4 +1,4 @@
-package com.anan.edu.config;
+package com.anan.service.edu.config;
 
 import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @Date: 2020/5/11 14:42
  */
 @Configuration
-@MapperScan("com.anan.edu.mapper")
+@MapperScan("com.anan.service.edu.mapper")
 public class EduConfig {
 
 

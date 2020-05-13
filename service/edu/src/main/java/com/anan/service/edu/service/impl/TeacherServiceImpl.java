@@ -1,8 +1,8 @@
-package com.anan.edu.service.impl;
+package com.anan.service.edu.service.impl;
 
-import com.anan.edu.orm.Teacher;
-import com.anan.edu.mapper.TeacherMapper;
-import com.anan.edu.service.TeacherService;
+import com.anan.service.edu.orm.Teacher;
+import com.anan.service.edu.mapper.TeacherMapper;
+import com.anan.service.edu.service.TeacherService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

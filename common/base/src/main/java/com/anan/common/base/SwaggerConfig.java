@@ -1,4 +1,4 @@
-package com.anan.common;
+package com.anan.common.base;
 
 import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;

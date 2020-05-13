@@ -1,4 +1,4 @@
-package com.anan.edu.orm;
+package com.anan.service.edu.orm;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
