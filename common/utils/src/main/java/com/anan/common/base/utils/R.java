@@ -1,7 +1,10 @@
 package com.anan.common.base.utils;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +16,7 @@ import java.util.Map;
  * @Date: 2020/5/12 12:27
  */
 @Data
+@ToString(exclude="map")
 public class R<T> {
 
   @ApiModelProperty(value = "返回码")
@@ -23,6 +27,10 @@ public class R<T> {
 
   @ApiModelProperty(value = "返回消息")
   private String msg;
+
+  // 这个map是为了装data的，全局变量是为了可以放多个 .data().data()
+  //  @Getter(AccessLevel.NONE)
+  private Map<String, Object> map = new HashMap<>();
 
   private R() {}
 
@@ -70,9 +78,8 @@ public class R<T> {
   }
 
   public R data(String key, Object value) {
-    Map<String, Object> data = new HashMap<>();
-    data.put(key, value);
-    this.setData((T)data);
+    map.put(key, value);
+    this.setData((T)map);
     return this;
   }
 
