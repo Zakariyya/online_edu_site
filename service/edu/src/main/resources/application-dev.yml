@@ -24,3 +24,9 @@ mybatis-plus:
       logic-delete-field: flag  #全局逻辑删除字段值 3.3.0开始支持，详情看下面。
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+# 日志
+logging:
+  level:
+    root: info  # OFF, FATAL, ERROR, WARN, INFO, DEBUG, ALL （后面的级别包含前面的级别）
+
