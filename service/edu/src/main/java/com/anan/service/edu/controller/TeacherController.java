@@ -4,6 +4,10 @@ package com.anan.service.edu.controller;
 import com.anan.common.base.utils.R;
 import com.anan.service.edu.orm.Teacher;
 import com.anan.service.edu.service.TeacherService;
+import com.anan.service.edu.util.QueryParams;
+import com.anan.service.edu.vo.TeacherQuery;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -60,10 +64,45 @@ public class TeacherController {
 
     page.getTotal();//总记录数
     List<Teacher> records = page.getRecords(); //当前页的数据
-
     return R.success().data("records", records).data("total", page.getTotal());
   }
 
 
+  // 3 page wrapper 条件查询
+  @PostMapping("page/{current}/{pageSize}")
+  public R pageCondition(
+                @ApiParam(name = "query", value = "分页查询条件", required = true) @RequestBody TeacherQuery query,
+                @ApiParam(name = "current", value = "当前页", required = true) @PathVariable Long current,
+                @ApiParam(name = "pageSize", value = "每页显示的记录数", required = true) @PathVariable Long pageSize){
+
+    Page page = teacherService.pageCondition(current, pageSize, query);
+
+    return R.success().data("records", page.getRecords()).data("total", page.getTotal());
+
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
