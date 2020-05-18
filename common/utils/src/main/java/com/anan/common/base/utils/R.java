@@ -85,4 +85,8 @@ public class R<T> {
     return this;
   }
 
+  public R msg(String msg) {
+    this.setMsg(msg);
+    return this;
+  }
 }
