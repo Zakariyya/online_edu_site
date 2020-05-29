@@ -25,6 +25,7 @@ import java.util.List;
 @Api(tags = {"讲师管理"})
 @RestController
 @RequestMapping("/edu/teacher")
+@CrossOrigin
 public class TeacherController {
 
   @Autowired
@@ -108,7 +109,7 @@ public class TeacherController {
    * @param id
    * @return
    */
-  @ApiOperation(value = "添加讲师")
+  @ApiOperation(value = "根据ID查询讲师")
   @GetMapping("{id}")
   public R findOne(@PathVariable String id) {
     Teacher byId = service.getById(id);

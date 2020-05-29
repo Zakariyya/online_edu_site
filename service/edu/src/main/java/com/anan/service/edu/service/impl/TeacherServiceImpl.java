@@ -41,8 +41,10 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
     QueryParams qp = QueryParams.build(qw)
       .like("name", query.getName())
       .like("level", query.getLevel())
-      .like("gmt_create", query.getBegin())
-      .like("gmt_modified", query.getEnd());
+      .ge("gmt_create", query.getBegin())
+      .le("gmt_modified", query.getEnd())
+      .orderByDesc("gmt_create");
+
 
 
     //调用方法实现分页

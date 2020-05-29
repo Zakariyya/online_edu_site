@@ -99,4 +99,21 @@ public class QueryParams {
     return this;
   }
 
+  public QueryParams ge(String colunmName, Object value) {
+    if(value != null)
+      qw.ge(colunmName, value);
+    return this;
+  }
+
+  public QueryParams le(String colunmName, Object value) {
+    if(value != null)
+      qw.le(colunmName, value);
+    return this;
+  }
+
+  public QueryParams orderByDesc(String colunmName) {
+      qw.orderByDesc(colunmName);
+    return this;
+  }
+
 }
