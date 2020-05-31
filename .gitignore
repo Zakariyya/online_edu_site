@@ -32,4 +32,4 @@ build/
 
 
 ### account of application-dev.yml
-#service/oss/src/main/resources/application-dev.yml
+service/oss/src/main/resources/application-oss.yml
