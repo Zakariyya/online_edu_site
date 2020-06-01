@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @Date: 2020/5/31 18:02
  */
 @Component
-public class ContantPropertiesUtils implements InitializingBean {
+public class PropertiesUtils implements InitializingBean {
 
 /**
  * 读取配置文件的内容
@@ -25,7 +25,7 @@ public class ContantPropertiesUtils implements InitializingBean {
  *   String accessKeySecret = "<yourAccessKeySecret>";
  *   String bucketName = "<yourBucketName>";
  */
-  @Value("${aliyun.oss.file.endpoint}")
+   @Value("${aliyun.oss.file.endpoint}")
   private String endpoint;
 
   @Value("${aliyun.oss.file.accessKeyId}")
@@ -43,7 +43,6 @@ public class ContantPropertiesUtils implements InitializingBean {
   public static String ACCESSKEY_ID;
   public static String ACCESS_KEY_SECRET;
   public static String BUCKET_NAME;
-
 
 
   @Override
