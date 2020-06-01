@@ -5,10 +5,12 @@ import com.aliyun.oss.OSSClientBuilder;
 import com.anan.service.oss.service.OssService;
 import com.anan.service.oss.utils.PropertiesUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.UUID;
 
 /**
  * OSS Service
@@ -68,6 +70,16 @@ public class OssServiceImpl implements OssService {
       // 上传文件流。
       InputStream inputStream = file.getInputStream();
       String fileName = file.getOriginalFilename();
+
+      //1. 多次上传相同名称文件会造成最后一次上传把之前上传的文件覆盖掉
+      //在每个文件名称添加随机唯一值，让每个名称不同
+      String uuid = UUID.randomUUID().toString().replace("-","");
+
+      //2. 把文件按照日期进行分类
+      // 2020/06/01/02.jpg
+      String datePath = new DateTime().toString("yyyy/MM/dd");
+
+      fileName = datePath + "/" + uuid + fileName;
 
       // 第二个参数 ，上传到OSS文件路径和文件名称 /aa/bb/1.jpg
       // 第三个参数，上传文件输入流
