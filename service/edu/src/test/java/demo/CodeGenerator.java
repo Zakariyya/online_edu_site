@@ -52,7 +52,7 @@ public class CodeGenerator {
         // 4、包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent("com.anan");
-        pc.setModuleName("edu"); //模块名
+        pc.setModuleName("service.edu"); //模块名
         pc.setController("controller");
         pc.setEntity("orm");
         pc.setService("service");
@@ -63,7 +63,7 @@ public class CodeGenerator {
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
 
-        strategy.setInclude("edu_teacher");//多个则用逗号隔开
+        strategy.setInclude("edu_subject");//多个则用逗号隔开
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
         strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀
