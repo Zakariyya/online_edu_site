@@ -1,12 +1,8 @@
 package com.anan.common.base.utils;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -89,4 +85,6 @@ public class R<T> {
     this.setMsg(msg);
     return this;
   }
+
+
 }
