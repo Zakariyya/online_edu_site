@@ -1,6 +1,6 @@
 package com.anan.service.edu.mapper;
 
-import com.anan.service.edu.orm.EduSubject;
+import com.anan.service.edu.orm.Subject;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author anan/CodeGenerator
  * @since 2020-06-04
  */
-public interface EduSubjectMapper extends BaseMapper<EduSubject> {
+public interface EduSubjectMapper extends BaseMapper<Subject> {
 
 }

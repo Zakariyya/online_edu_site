@@ -1,8 +1,11 @@
 package com.anan.service.edu.service;
 
-import com.anan.service.edu.orm.EduSubject;
+import com.anan.service.edu.orm.Subject;
+import com.anan.service.edu.orm.subjectTree.SubjectTree;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,7 +15,10 @@ import org.springframework.web.multipart.MultipartFile;
  * @author anan/CodeGenerator
  * @since 2020-06-04
  */
-public interface EduSubjectService extends IService<EduSubject> {
+public interface EduSubjectService extends IService<Subject> {
 
   void saveSubject(MultipartFile file,EduSubjectService service);
+
+  List<SubjectTree> treeFindAll();
+
 }

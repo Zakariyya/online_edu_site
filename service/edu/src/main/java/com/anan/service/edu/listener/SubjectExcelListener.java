@@ -3,7 +3,7 @@ package com.anan.service.edu.listener;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
 import com.anan.common.base.exception.AnanException;
-import com.anan.service.edu.orm.EduSubject;
+import com.anan.service.edu.orm.Subject;
 import com.anan.service.edu.orm.excel.SubjectData;
 import com.anan.service.edu.service.EduSubjectService;
 import com.anan.service.edu.util.QueryParams;
@@ -33,9 +33,9 @@ public class SubjectExcelListener extends AnalysisEventListener<SubjectData> {
 
     //一行一行读取，每次读取有两个值，第一个值一级分类，第二个值二级分类
     //判断一级分类是否重复
-    EduSubject oneSubject = this.existOneSubject(subjectData.getOneSubjectName());
+    Subject oneSubject = this.existOneSubject(subjectData.getOneSubjectName());
     if (oneSubject == null) { //没有相同的一级分类，进行添加
-      oneSubject = new EduSubject();
+      oneSubject = new Subject();
       oneSubject.setParentId("0");
       oneSubject.setTitle(subjectData.getOneSubjectName());
       service.save(oneSubject);
@@ -44,9 +44,9 @@ public class SubjectExcelListener extends AnalysisEventListener<SubjectData> {
     String parentId = oneSubject.getId();
     //判断二级分类
     //判断二级分类是否重复
-    EduSubject twoSubject = this.existTwoSubject(subjectData.getTwoSubjectName(), parentId);
+    Subject twoSubject = this.existTwoSubject(subjectData.getTwoSubjectName(), parentId);
     if (twoSubject == null) {
-      twoSubject = new EduSubject();
+      twoSubject = new Subject();
       twoSubject.setParentId(parentId);
       twoSubject.setTitle(subjectData.getTwoSubjectName()); // 二级分类的名称
       service.save(twoSubject);
@@ -61,22 +61,22 @@ public class SubjectExcelListener extends AnalysisEventListener<SubjectData> {
 
 
   //判断一级分类不能重复添加
-  private EduSubject existOneSubject(String name) {
-    QueryWrapper<EduSubject> w = new QueryWrapper<>();
+  private Subject existOneSubject(String name) {
+    QueryWrapper<Subject> w = new QueryWrapper<>();
     QueryParams q = QueryParams.build(w)
       .eq("title", name)
       .eq("parent_id", "0");
-    EduSubject one = service.getOne(w);
+    Subject one = service.getOne(w);
     return one;
   }
 
   //判断二级分类不能重复添加
-  private EduSubject existTwoSubject(String name, String parentId) {
-    QueryWrapper<EduSubject> w = new QueryWrapper<>();
+  private Subject existTwoSubject(String name, String parentId) {
+    QueryWrapper<Subject> w = new QueryWrapper<>();
     QueryParams q = QueryParams.build(w)
       .eq("title", name)
       .eq("parent_id", parentId);
-    EduSubject two = service.getOne(w);
+    Subject two = service.getOne(w);
     return two;
   }
 }

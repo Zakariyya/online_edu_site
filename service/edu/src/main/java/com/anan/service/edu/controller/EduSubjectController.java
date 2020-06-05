@@ -2,15 +2,14 @@ package com.anan.service.edu.controller;
 
 
 import com.anan.common.base.utils.R;
-import com.anan.service.edu.orm.EduSubject;
+import com.anan.service.edu.orm.subjectTree.SubjectTree;
 import com.anan.service.edu.service.EduSubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * <p>
@@ -38,7 +37,11 @@ public class EduSubjectController {
     return R.success();
   }
 
-
+  @GetMapping
+  public R list() {
+    List<SubjectTree> subjectTrees = service.treeFindAll();
+    return R.success(subjectTrees);
+  }
 
 }
 
