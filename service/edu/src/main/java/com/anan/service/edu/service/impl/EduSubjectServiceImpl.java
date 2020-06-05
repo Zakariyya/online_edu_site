@@ -5,7 +5,6 @@ import com.anan.service.edu.listener.SubjectExcelListener;
 import com.anan.service.edu.orm.Subject;
 import com.anan.service.edu.mapper.EduSubjectMapper;
 import com.anan.service.edu.orm.excel.SubjectData;
-import com.anan.service.edu.orm.subjectTree.SubjectTree;
 import com.anan.service.edu.service.EduSubjectService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
@@ -44,29 +43,38 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, Subject
   }
 
   @Override
-  public List<SubjectTree> treeFindAll() {
+  public List<Subject> treeFindAll() {
 
-    List<SubjectTree> finalList = new ArrayList<>();
-
+    List<Subject> finalList = new ArrayList<>();
     List<Subject> list = this.list(null);
 
-    for (Subject itemOne : list) {
-      if(itemOne.getParentId().equals("0")){
-        SubjectTree tree = new SubjectTree();
-        BeanUtils.copyProperties(itemOne, tree);
+    for (Subject item : list) {
+      if (item.getParentId().equals("0")) {
+        //遍历list中的元素 pid == item.getId()，返回列表
+        List<Subject> childrenList = addChildren(item, list);
 
-        for(Subject itemTwo: list){
-          if(itemTwo.getParentId().equals(itemOne.getId())){
-            SubjectTree two = new SubjectTree();
-            BeanUtils.copyProperties(itemTwo, two);
-            tree.getChildren().add(two);
-          }
-        }
-        finalList.add(tree);
+        //将列表传到item.getChildren()
+        item.setChildren(childrenList);
+        //将item传入 finaList 中
+        finalList.add(item);
       }
-    }
 
+    }
     return finalList;
   }
+
+
+  public List<Subject> addChildren(Subject pSub, List<Subject> list){
+
+    List<Subject> cList = new ArrayList<>();
+    for (Subject item : list) {
+      if (item.getParentId().equals(pSub.getId())) {
+        item.setChildren(addChildren(item, list));
+        cList.add(item);
+      }
+    }
+    return cList;
+  }
+
 
 }

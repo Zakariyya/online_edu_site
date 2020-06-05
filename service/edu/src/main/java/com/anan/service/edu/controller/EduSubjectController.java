@@ -2,7 +2,7 @@ package com.anan.service.edu.controller;
 
 
 import com.anan.common.base.utils.R;
-import com.anan.service.edu.orm.subjectTree.SubjectTree;
+import com.anan.service.edu.orm.Subject;
 import com.anan.service.edu.service.EduSubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,8 +39,8 @@ public class EduSubjectController {
 
   @GetMapping
   public R list() {
-    List<SubjectTree> subjectTrees = service.treeFindAll();
-    return R.success(subjectTrees);
+    List<Subject> subjects = service.treeFindAll();
+    return R.success(subjects);
   }
 
 }
